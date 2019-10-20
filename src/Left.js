@@ -1,60 +1,49 @@
-import React, { useContext}  from 'react';
-import Form from './Form';
-import {MyContext} from './Store'
-import './App.css';
-
+import React from 'react'
+import './App.css'
 
 
 function App(props) {
+
+  const icon = props.data.weather === undefined ? "" :`http://openweathermap.org/img/w/${props.data.weather[0].icon}.png`
+
+  const pp = props.data.weather === undefined ? "" :  props.data.weather[0].main
   
-  const { city, dispatch } = useContext(MyContext);
+
+
+  const style = {
+    backgroundImage:`url(${pp === "Rain" ? "https://media.giphy.com/media/Mgq7EMQUrhcvC/source.gif" :
+     pp === "Clouds" ? "https://media.giphy.com/media/Cn46Wi1Fvh11S/source.gif" :
+     pp === "Thunderstorms" ? "https://media.giphy.com/media/8xY1YYpEZ4dws/source.gif":
+     pp === "Clear" ? "https://media.giphy.com/media/Te7h0uqGNo0CY/giphy.gif" :
+      "https://www.animatedimages.org/data/media/148/animated-weather-image-0012.gif"})`,
+  }
   return (
-  <div className="Left">
-    <div className="weather-form" style={style_weather_form}>
-      <MyContext.Provider value={{ city, dispatch }}>
-        {city.cityName && <Form/>}
-      </MyContext.Provider>
-    </div>
-    <div className="weather-detail" style={style_weather_detail}>
-      <p style={weather_detail_header}>Weather Details</p>
-      {
-        props.data.main === undefined ? null : Object.keys(props.data.main).map((key, index) => {
-          return(
-          <div style={ weather_detail_data } key={index}>
-            <p>{key}</p>
-            <p>{props.data.main[key]}</p>
+      <div className="Left"style={style}>
+      
+      <div className="left-bottom">
+
+
+        <div className="temp">{props.data.main === undefined ? null : props.data.main.temp}</div>
+
+        <div className="city-time">
+          <div className="city">{props.data.name}</div>
+          <div className="time">{props.data.timezone}</div>
+        </div>
+
+        <div className="icon-desc">
+          <div className="icon">
+          <img alt="icon" className="icon" src={icon}/>
           </div>
-          )})}
-    </div>
-  </div>
+          <div className="desc">{props.data.weather === undefined ? "" : props.data.weather[0].main}</div>
+        </div>
+
+
+
+        </div>
+        </div>
   );
 }
 
-const style_weather_form={
-  height: '15%',
-  border: '0.5px solid yellow',
-  borderRadius: '12px',
-  width: '80%',
-  margin: 'auto',
-  color: 'white'
-};
 
-const style_weather_detail={
-  height: '85%',
-  width: '80%',
-  color: 'white',
-  overflowY: 'scroll',
-};
-const weather_detail_header = {
-  textAlign: 'center',
-  letterSpacing: '2px',
-  margin: '30px 0',
-};
-
-const weather_detail_data={
-  display: "flex",
-  justifyContent: "space-around",
-  marginBottom: '15px',
-};
 
 export default App;

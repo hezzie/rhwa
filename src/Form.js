@@ -2,7 +2,7 @@ import React, { useContext, useState} from 'react';
 import './App.css';
 import { MyContext } from './Store'
 
-const UPDATE_USER = "UPDATE_USER";
+
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
     <button
     type="submit" 
     className='btn'
-    onClick = {() =>  dispatch({type: UPDATE_USER, cityName: _city})}>submit</button>
+    onClick = {() =>  dispatch({type: "SET_CITY", cityName: _city})}>submit</button>
   </div>
   );
 }

@@ -2,7 +2,7 @@ import {createContext} from 'react';
 
 const MyContext = createContext(null);
 
-const UPDATE_USER = "UPDATE_USER";
+
 
 const initialState = {
   cityName: "noCity"
@@ -10,7 +10,7 @@ const initialState = {
 
   function reducer(state, action) {
     switch (action.type) {
-      case UPDATE_USER:
+      case "SET_CITY":
         return {
           cityName: action.cityName
         };

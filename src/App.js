@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import axios from 'axios';
 import './App.css';
-import Left from './Left';
 import Right from './Right';
+import Left from './Left';
 import './index.css'
 import {initialState, reducer, MyContext} from './Store'
 
@@ -15,8 +15,7 @@ const App = () => {
 
   var options = {
     enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
+    timeout: 5000
   };
   
   function success(pos) {
@@ -51,8 +50,9 @@ useEffect(()=>{
   return(
   <div className="App">
     <MyContext.Provider value={{ city, dispatch }}>
+    <Left data={data} />
       <Right data={data}/>
-      {city.cityName && <Left data={data} />}
+      
     </MyContext.Provider>
   </div>
       )
