@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect, useReducer} from 'react'
+import axios from 'axios'
+import './App.css'
+import Left from './Right'
+import Right from './Left'
+import './index.css'
+import {initialState, reducer, MyContext} from './Store'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+const App = () => {
+  const [city, dispatch] = useReducer(reducer, initialState)
+  const [data, setData] = useState([])
+  const [cord, setCord] = useState('')
+
+ 
+  
+  const success = (pos) => {
+    var crd = pos.coords
+  setCord({
+    lat: crd.latitude,
+    long:crd.longitude,
+    accuracy:crd.accuracy
+  })
+  }
+  
+  const error = (err) => {
+    console.warn(`ERROR(${err.code}): ${err.message}`)
+  }
+  
+  navigator.geolocation.getCurrentPosition(success, error)
+
+  const cccc = city.cityName === "noCity" ? `lat=${cord.lat}&lon=${cord.long}` : `q=${city.cityName}`
+useEffect(()=>{
+    axios.get(
+      `http://api.openweathermap.org/data/2.5/weather?${cccc}&APPID=7f6a0fe6f25df85a9176f605964e2fb0`
+      )
+    .then( (response) => {
+      setData(response.data)
+    })
+    .catch( (error) => {
+      console.log(error)
+    })
+    .finally(() => {
+    })
+  
+  }, [cccc])
+
+  return(
+  <div className="App">
+    <MyContext.Provider value={{ city, dispatch }}>
+      <Right data={data}/>
+      {city.cityName && <Left data={data} />}
+    </MyContext.Provider>
+  </div>
+      )
 }
 
-export default App;
+export default App

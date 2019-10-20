@@ -1,13 +1,123 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    margin: 0;
+    padding: 0;
 }
+html {
+    height: 100%;
+}
+body {
+    min-height: 100vh;
+}
+.App {
+    display: flex;
+    height: 100vh;
+}
+.Left {
+    width: 60%;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+}
+.btn{
+    height: 30px;
+    width: 60px;
+}
+.input{
+    margin:20px 10px;
+    width: 100%;
+    height: 25%;
+}
+input[type=text]{
+    margin:auto;
+    width: 75%;
+    height: 100%;
+}
+input[type=submit]{
+    margin: auto;
+    width: 15%;
+    height: 100%;
+}
+.Right{
+    width: 40%;
+    background: #232323;
+}
+.left-bottom{
+    
+    display: flex;
+    flex-wrap: wrap;
+    color:white;
+    text-align: center;
+    position: absolute;
+    background: #232323;;
+    border-radius: 20%;
+    bottom:20px;
+    height: 200px;
+    margin:0px 10%;
+    width: 50%;  
+}
+.temp{
+    margin: auto;
+    font-size: 60px;
+    width: 20%;
+}
+.city-time{
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+.city{
+    font-size: 30px;
+}
+.icon-desc{
+   margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+.desc{
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+}
+.icon  {
+    width: 50px;
+    height: 50px;
+    margin: auto;
+  }
+  .weather-form{
+        height: 15%;
+        border: 0.5px solid yellow;
+        border-radius: 12px;
+        width: 80%;
+        margin: auto;
+        color: white;
+  }
+  .weather-detail{
+        height: 85%;
+        width: 80%;
+        color: white;
+        overflow-y: scroll;
+  }
+  .weather_detail_header {
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 30px 0;
+  }
+  .weather_detail_data {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+@media only screen and (max-width: 1100px){
+    .App{
+        flex-direction: column-reverse;
+    }
+    .Right {
+        width: 100%; 
+    }
+    .Left{
+        width: 100%;
+    }
+    .left-bottom{
+        width: 80%; 
+    }
 }
