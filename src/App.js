@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import axios from 'axios';
 import './App.css';
-import Right from './Right';
-import Left from './Left';
+import Right from './components/Right';
+import Left from './components/Left';
 import './index.css'
-import {initialState, reducer, MyContext} from './Store'
+import {initialState, reducer, MyContext} from './store/Store'
 
 
 
@@ -18,7 +18,7 @@ const App = () => {
     timeout: 5000
   };
   
-  function success(pos) {
+  const success = (pos) => {
     var crd = pos.coords;
   setCord({
     lat: crd.latitude,
@@ -27,7 +27,7 @@ const App = () => {
   })
   }
   
-  function error(err) {
+  const error = (err) => {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
   
@@ -50,9 +50,8 @@ useEffect(()=>{
   return(
   <div className="App">
     <MyContext.Provider value={{ city, dispatch }}>
-    <Left data={data} />
+      <Left data={data} />
       <Right data={data}/>
-      
     </MyContext.Provider>
   </div>
       )

@@ -1,19 +1,12 @@
-import React, { useContext}  from 'react';
+import React from 'react';
 import Form from './Form';
-import {MyContext} from './Store'
-import './App.css';
 
+const Right = (props) => {
 
-
-function App(props) {
-  
-  const { city, dispatch } = useContext(MyContext);
   return (
   <div className="Right">
     <div className="weather-form" style={style_weather_form}>
-      <MyContext.Provider value={{ city, dispatch }}>
-        {city.cityName && <Form/>}
-      </MyContext.Provider>
+      <Form/>
     </div>
     <div className="weather-detail" style={style_weather_detail}>
       <p style={weather_detail_header}>Weather Details</p>
@@ -57,4 +50,4 @@ const weather_detail_data={
   marginBottom: '15px',
 };
 
-export default App;
+export default Right;

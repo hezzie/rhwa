@@ -1,13 +1,10 @@
 import React, { useContext, useState} from 'react';
-import './App.css';
-import { MyContext } from './Store'
+import { MyContext } from '../store/Store'
 
-
-
-function App() {
+const Form = () => {
 
   const [_city, setCity] = useState('')
-  const {dispatch } = useContext(MyContext);
+  const { dispatch } = useContext(MyContext);
 
   return (
   <div className="input">
@@ -26,4 +23,4 @@ function App() {
 }
 
 
-export default App;
+export default Form;
