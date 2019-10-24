@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
-import "./App.css";
 import Right from "./components/Right";
 import Left from "./components/Left";
 import Right1 from "./components/Right1";
